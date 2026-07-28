@@ -113,6 +113,10 @@ const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
     text-align: center;
   }
   .gauge-label {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
     letter-spacing: 2px;
@@ -120,6 +124,14 @@ const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
     color: var(--text-dim);
     margin-bottom: 14px;
   }
+  
+  .label-icon{
+    width:18px;
+    height:18px;
+    color:var(--teal);
+    flex-shrink:0;
+  }
+
   .dial {
     position: relative;
     width: 168px;
@@ -260,7 +272,7 @@ const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
   <div class="gauges">
 
     <div class="gauge-card">
-      <div class="gauge-label">Temperature</div>
+      <div class="gauge-label"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V5a2 2 0 10-4 0v9.76a4 4 0 104 0z"/><line x1="12" y1="11" x2="12" y2="17"/></svg><span>Temperature</span></div>
       <div class="dial">
         <div class="dial-ring" id="tempRing"></div>
         <div class="dial-mask"></div>
@@ -272,7 +284,7 @@ const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
     </div>
 
     <div class="gauge-card">
-      <div class="gauge-label">Relative Humidity</div>
+      <div class="gauge-label"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3C9 7 6 10 6 14a6 6 0 0012 0c0-4-3-7-6-11z"/></svg><span>Relative Humidity</span></div>
       <div class="dial">
         <div class="dial-ring" id="humRing"></div>
         <div class="dial-mask"></div>
@@ -284,7 +296,7 @@ const char DASHBOARD_HTML[] PROGMEM = R"rawliteral(
     </div>
 
     <div class="gauge-card">
-      <div class="gauge-label">Barometric Pressure</div>
+      <div class="gauge-label"><svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a8 8 0 1116 0"/><path d="M12 14l4-4"/></svg><span>Barometric Pressure</span></div>
       <div class="dial">
         <div class="dial-ring" id="presRing"></div>
         <div class="dial-mask"></div>
