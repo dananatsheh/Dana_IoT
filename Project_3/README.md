@@ -1,2 +1,2 @@
 ## Documentation
-See the full [Motor Protection System report](Project_3_Documentation.pdf) for schematics, firmware, and calibration notes.
+See the full [Motor Driver & Modular Code (OOP)](project_3_documentation.pdf) for schematics, firmware, and calibration notes.
