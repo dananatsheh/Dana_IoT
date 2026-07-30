@@ -79,7 +79,7 @@ A self-contained environmental monitoring station serving a live, auto-refreshin
 - WiFi station/AP fallback and NTP time sync
 
 **Framework:** PlatformIO · **Board:** ESP32 DevKit
-📄 Documentation: [`project_4/Project_4_Documentation.pdf`](./project_4/Project_4_Documentation.pdf)
+📄 Documentation: [`project_4/Project_4_Documentation.pdf`](./Project_4/Project_4_Documentation.pdf)
 
 ---
 
