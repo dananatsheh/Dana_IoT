@@ -65,7 +65,7 @@ An upgrade of Project 2's protection system to a modular, object-oriented firmwa
 - Two-stage current filtering (oversampling + EMA)
 
 **Framework:** PlatformIO · **Board:** ESP32-S3 DevKit v1
-📄 Documentation: [`project_3/project_3_documentation.pdf`](./project_3/project_3_documentation.pdf)
+📄 Documentation: [`project_3/project_3_documentation.pdf`](./Project_3/project_3_documentation.pdf)
 
 ---
 
