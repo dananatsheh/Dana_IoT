@@ -34,45 +34,6 @@ src/
 platformio.ini
 ```
 
-## Setup (per board)
-
-1. Open `include/config.h` and edit:
-   - `WIFI_SSID` / `WIFI_PASSWORD`
-   - `MY_ID` / `PARTNER_ID` - give board A and board B **different** IDs
-     that point at each other, e.g.:
-
-     | Board | `MY_ID`     | `PARTNER_ID` |
-     |-------|-------------|--------------|
-     | A     | `studentA`  | `studentB`   |
-     | B     | `studentB`  | `studentA`   |
-
-   This is the only thing that should differ between the two students'
-   copies of the firmware - just like `partnerMAC[]` in Task 2.3.
-
-2. Broker: defaults to `test.mosquitto.org:1883` (no login needed). To use
-   `iot.coreflux.cloud` instead, change `MQTT_BROKER`/`MQTT_PORT` and fill in
-   `MQTT_USERNAME`/`MQTT_PASSWORD` if your instructor requires them. Both
-   boards must point at the **same** broker.
-
-3. Wiring is identical to Task 2.3 - see pin table in `config.h`
-   (IR on GPIO 34, motor driver on GPIO 26/27/25, LEDs on GPIO 16/17/18/19).
-
-4. Build and flash with PlatformIO:
-   ```
-   pio run -t upload
-   pio device monitor
-   ```
-
-## Verifying it works
-
-- Serial monitor prints `linkLost | receivedRunMotor | motorShouldRun` every
-  loop, same as Task 2.3.
-- Block board A's IR sensor -> board B's motor should stop within one
-  debounce window (~500 ms).
-- Power off board A -> board B's motor should stop within 2 seconds and its
-  link LED should go dark, even though nothing "wrong" happened content-wise
-  - it's purely the absence of a fresh MQTT message that trips the fail-safe.
-
 ## Notes / limitations
 
 - Public brokers are best-effort and unauthenticated by default - fine for a
@@ -82,3 +43,5 @@ platformio.ini
 - QoS is left at PubSubClient's default (QoS 0); since we publish
   continuously and rely on a silence-based timeout rather than any single
   message, an occasionally dropped packet has no lasting effect.
+
+  See the full [Two-Way Wireless Interlock System](Project_6_Documentation.pdf) for schematics, firmware, and calibration notes.
