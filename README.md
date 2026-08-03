@@ -12,7 +12,8 @@ Dana_IoT/
 ├── project_2/             # Project 2 — Motor Protection System
 ├── project_3/             # Project 3 — Motor Driver & Modular Code (OOP)
 ├── project_4/             # Project 4 — Environmental Monitor & Data Logger
-├── project_5/             # Project 5 — Two-Way Wireless Interlock System
+├── project_5/             # Project 5 — Two-Way Wireless Interlock System using ESPNOW
+├── project_6/             # Project 6 — Two-Way Wireless Interlock System using MQTT
 ├── .gitignore
 └── README.md
 ```
@@ -83,7 +84,7 @@ A self-contained environmental monitoring station serving a live, auto-refreshin
 
 ---
 
-### Project 5 — Two-Way Wireless Interlock System
+### Project 5 — Two-Way Wireless Interlock System using ESPNOW
 A dual-ESP32 safety interlock connected peer-to-peer over ESP-NOW (no router or cloud), where each board's IR sensor gates its partner's motor, with a fail-safe link timeout.
 
 - Bidirectional ESP-NOW communication between two ESP32 boards
@@ -93,6 +94,20 @@ A dual-ESP32 safety interlock connected peer-to-peer over ESP-NOW (no router or 
 
 **Framework:** PlatformIO · **Board:** Dual ESP32 DevKit
 📄 Documentation: [`project_5/Project_5_Documentation.pdf`](./project_5/Project_5_Documentation.pdf)
+
+---
+
+### Project 6 — Two-Way Wireless Interlock System using MQTT
+A dual-ESP32 safety interlock connected peer-to-peer over ESP-NOW (no router or cloud), where each board's IR sensor gates its partner's motor, with a fail-safe link timeout.
+
+- Bidirectional MQTT communication between two ESP32 boards
+- Cross-wired safety interlock (remote sensor gates local motor)
+- 2-second fail-safe link timeout — silence forces motor stop
+- Debounced IR sensing and full status LED set per board
+
+**Framework:** PlatformIO · **Board:** Dual ESP32 DevKit
+📄 Documentation: [`project_6/Project_6_Documentation.pdf`](./project_6/Project_6_Documentation.pdf)
+
 
 ---
 
