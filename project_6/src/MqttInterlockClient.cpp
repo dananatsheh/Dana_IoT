@@ -31,12 +31,9 @@ void MqttInterlockClient::publishState(bool runMotor) {
     return;
   }
 
-  InterlockMessage msg;
-  msg.senderID  = MY_ID;
-  msg.runMotor  = runMotor;
-  msg.timestamp = millis();
 
-  _mqttClient.publish(MY_TOPIC, msg.toJson().c_str());
+  const char* payload = runMotor ? "1" : "0";
+  _mqttClient.publish(MY_TOPIC, payload);
 }
 
 bool MqttInterlockClient::isConnected() {
@@ -101,11 +98,25 @@ void MqttInterlockClient::connectBroker() {
 }
 
 void MqttInterlockClient::handleMessage(char* topic, uint8_t* payload, unsigned int length) {
-  InterlockMessage incoming;
-  if (InterlockMessage::fromJson(payload, length, incoming)) {
-    _receivedRunMotor = incoming.runMotor;
-    _linkMonitor.notifyPacketReceived();
+  Serial.print("[recv] topic=");
+  Serial.print(topic);
+  Serial.print(" len=");
+  Serial.print(length);
+  Serial.print(" payload=");
+  for (unsigned int i = 0; i < length; i++) {
+    Serial.print((char)payload[i]);
   }
+  Serial.println();
+
+  if (length < 1) {
+    return;
+  }
+
+
+  constexpr bool obstacleIsOne = false;
+  bool obstacleDetected = obstacleIsOne ? (payload[1] == '1') : (payload[0] == '0');
+  _receivedRunMotor = !obstacleDetected;
+  _linkMonitor.notifyPacketReceived();
 }
 
 void MqttInterlockClient::staticCallback(char* topic, uint8_t* payload, unsigned int length) {

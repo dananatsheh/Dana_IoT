@@ -2,9 +2,9 @@
 #define CONFIG_H
 
 #define WIFI_SSID       "Dana"
-#define WIFI_PASSWORD   "password44"
+#define WIFI_PASSWORD   "meuisshit55"
 
-#define MQTT_BROKER     "test.mosquitto.org"
+#define MQTT_BROKER     "broker.emqx.io"
 #define MQTT_PORT       1883
 #define MQTT_USERNAME   ""   
 #define MQTT_PASSWORD   ""
@@ -12,9 +12,9 @@
 #define MY_ID           "studentB"
 #define PARTNER_ID      "studentA"
 
-#define TOPIC_PREFIX    "iot_field_training/task2_4/interlock/"
-#define MY_TOPIC        TOPIC_PREFIX MY_ID
-#define PARTNER_TOPIC   TOPIC_PREFIX PARTNER_ID
+
+#define MY_TOPIC        "sensor/control/cyber"   
+#define PARTNER_TOPIC   "sensor/data/cyber"      
 
 #define TX_LED          16   
 #define MOTOR_LED       19   
