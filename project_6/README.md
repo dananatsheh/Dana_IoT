@@ -45,3 +45,7 @@ platformio.ini
   message, an occasionally dropped packet has no lasting effect.
 
   See the full [Two-Way Wireless Interlock System](Project_6_Documentation.pdf) for schematics, firmware, and calibration notes.
+
+ ## Demo
+
+[Watch the demo video](Public_MQTT_Project_6.mp4)
