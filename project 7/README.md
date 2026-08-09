@@ -123,7 +123,7 @@ Simple two-direction-pin + PWM driver (e.g. L298N-style), pins in
 ```
 MOTOR_PIN_IN1 = 26   direction pin A
 MOTOR_PIN_IN2 = 27   direction pin B
-MOTOR_PIN_PWM = 14   speed, via ledc PWM (20kHz, 8-bit)
+MOTOR_PIN_PWM = 25   speed
 ```
 
 `MotorController` keeps `_running` / `_forward` / `_speedPercent` as its
@@ -143,10 +143,3 @@ main.cpp                  owns motor/sensor/mqtt objects, wires it all together
 mosquitto.conf             broker config
 ```
 
-## Submission
-
-- GitHub repo link: _add here_
-- `mosquitto.conf`: included above
-- Screenshots of MQTT Explorer: _add here_ — showing `sensor/bme280/*`
-  updating on an interval, and `motor/status/*` tracking commands sent
-  to `motor/command/*`.
