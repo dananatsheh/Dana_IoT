@@ -14,6 +14,7 @@ Dana_IoT/
 ├── project_4/             # Project 4 — Environmental Monitor & Data Logger
 ├── project_5/             # Project 5 — Two-Way Wireless Interlock System using ESPNOW
 ├── project_6/             # Project 6 — Two-Way Wireless Interlock System using MQTT
+├── project_7/              # Project 7 — Local MQTT Telemetry & Bidirectional Motor Control
 ├── .gitignore
 └── README.md
 ```
@@ -108,6 +109,20 @@ A dual-ESP32 safety interlock connected peer-to-peer over ESP-NOW (no router or 
 **Framework:** PlatformIO · **Board:** Dual ESP32 DevKit
 📄 Documentation: [`project_6/Project_6_Documentation.pdf`](./project_6/Project_6_Documentation.pdf)
 
+---
+
+### Project 7 — Local MQTT Telemetry & Bidirectional Motor Control
+A single-ESP32 build that reads live BME280 environmental data over I2C and exposes full bidirectional control of a DC motor, all mediated through a Mosquitto MQTT broker self-hosted on the developer's own PC rather than a public cloud broker.
+
+- BME280 sensor telemetry (temperature, humidity, pressure) published continuously over MQTT
+- Full bidirectional motor control (state, direction, speed) via three command topics, with actuator-boundary speed clamping
+- Live-state status publishing — status topics always reflect the motor's true running state, never a cached command
+- Structured, hierarchical topic namespace (`sensor/`, `motor/status/`, `motor/command/`)
+- Local disconnect fail-safe (motor stops on broker disconnect) with immediate status republish on reconnect
+- Non-blocking main loop with independently timer-gated WiFi/broker reconnection
+
+**Framework:** PlatformIO · **Board:** ESP32 DevKit · **Broker:** Self-hosted Mosquitto 2.1.2
+📄 Documentation: [`project_7/Project_7_Documentation.pdf`](./project_7/Project_7_Documentation.pdf)
 
 ---
 
