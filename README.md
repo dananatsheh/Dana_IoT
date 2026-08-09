@@ -122,7 +122,7 @@ A single-ESP32 build that reads live BME280 environmental data over I2C and expo
 - Non-blocking main loop with independently timer-gated WiFi/broker reconnection
 
 **Framework:** PlatformIO · **Board:** ESP32 DevKit · **Broker:** Self-hosted Mosquitto 2.1.2
-📄 Documentation: [`project_7/Project_7_Documentation.pdf`](./Project_7/Project_7_Documentation.pdf)
+📄 Documentation: [`project_7/Project_7_Documentation.pdf`](./project_7/Project_7_Documentation.pdf)
 
 ---
 
