@@ -14,7 +14,7 @@ Dana_IoT/
 ├── project_4/             # Project 4 — Environmental Monitor & Data Logger
 ├── project_5/             # Project 5 — Two-Way Wireless Interlock System using ESPNOW
 ├── project_6/             # Project 6 — Two-Way Wireless Interlock System using MQTT
-├── project_7/              # Project 7 — Local MQTT Telemetry & Bidirectional Motor Control
+├── project_7/             # Project 7 — Local MQTT Telemetry & Bidirectional Motor Control
 ├── .gitignore
 └── README.md
 ```
