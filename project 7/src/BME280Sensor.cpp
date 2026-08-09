@@ -1,4 +1,5 @@
 #include "BME280Sensor.h"
+#include "config.h"
 
 bool BME280Sensor::begin() {
   bool ok = _bme.begin(_address);

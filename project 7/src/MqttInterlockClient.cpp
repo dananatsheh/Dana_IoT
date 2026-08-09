@@ -1,9 +1,10 @@
 #include "MqttInterlockClient.h"
+#include "config.h"
 
 MqttInterlockClient* MqttInterlockClient::_instance = nullptr;
 
-MqttInterlockClient::MqttInterlockClient(LinkMonitor& linkMonitor)
-  : _mqttClient(_wifiClient), _linkMonitor(linkMonitor) {}
+MqttInterlockClient::MqttInterlockClient()
+  : _mqttClient(_wifiClient) {}
 
 void MqttInterlockClient::begin() {
   _instance = this;
@@ -12,8 +13,6 @@ void MqttInterlockClient::begin() {
 
   _mqttClient.setServer(MQTT_BROKER, MQTT_PORT);
   _mqttClient.setCallback(MqttInterlockClient::staticCallback);
-
-  connectBroker();
 }
 
 void MqttInterlockClient::loop() {
@@ -26,18 +25,62 @@ void MqttInterlockClient::loop() {
   _mqttClient.loop();
 }
 
-void MqttInterlockClient::publishState(bool runMotor) {
+void MqttInterlockClient::publish(const char* topic, const char* payload) {
   if (!_mqttClient.connected()) {
     return;
   }
+  _mqttClient.publish(topic, payload);
+}
 
+void MqttInterlockClient::subscribe(const char* topic, CommandSlot slot) {
+  if (_routeCount < MAX_ROUTES) {
+    _routes[_routeCount].topic = topic;
+    _routes[_routeCount].slot = slot;
+    _routeCount++;
+  }
 
-  const char* payload = runMotor ? "1" : "0";
-  _mqttClient.publish(MY_TOPIC, payload);
+  if (_mqttClient.connected()) {
+    _mqttClient.subscribe(topic);
+  }
 }
 
 bool MqttInterlockClient::isConnected() {
   return _mqttClient.connected();
+}
+
+bool MqttInterlockClient::getNewStateCommand(String &outValue) {
+  if (!_stateInbox.hasNew) {
+    return false;
+  }
+  outValue = _stateInbox.value;
+  _stateInbox.hasNew = false;
+  return true;
+}
+
+bool MqttInterlockClient::getNewDirectionCommand(String &outValue) {
+  if (!_directionInbox.hasNew) {
+    return false;
+  }
+  outValue = _directionInbox.value;
+  _directionInbox.hasNew = false;
+  return true;
+}
+
+bool MqttInterlockClient::getNewSpeedCommand(String &outValue) {
+  if (!_speedInbox.hasNew) {
+    return false;
+  }
+  outValue = _speedInbox.value;
+  _speedInbox.hasNew = false;
+  return true;
+}
+
+bool MqttInterlockClient::consumeReconnectFlag() {
+  if (!_reconnectFlag) {
+    return false;
+  }
+  _reconnectFlag = false;
+  return true;
 }
 
 void MqttInterlockClient::connectWiFi() {
@@ -73,7 +116,7 @@ void MqttInterlockClient::connectBroker() {
   }
   _lastReconnectAttempt = millis();
 
-  String clientId = String("esp32-") + MY_ID + "-" + String((uint32_t)ESP.getEfuseMac(), HEX);
+  String clientId = String(MQTT_CLIENT_ID_PREFIX) + String((uint32_t)ESP.getEfuseMac(), HEX);
 
   Serial.print("Connecting to MQTT broker ");
   Serial.print(MQTT_BROKER);
@@ -88,12 +131,19 @@ void MqttInterlockClient::connectBroker() {
 
   if (connected) {
     Serial.println(" connected.");
-    _mqttClient.subscribe(PARTNER_TOPIC);
-    Serial.print("Subscribed to: ");
-    Serial.println(PARTNER_TOPIC);
+    resubscribeAll();
+    _reconnectFlag = true;
   } else {
     Serial.print(" failed, rc=");
     Serial.println(_mqttClient.state());
+  }
+}
+
+void MqttInterlockClient::resubscribeAll() {
+  for (uint8_t i = 0; i < _routeCount; i++) {
+    _mqttClient.subscribe(_routes[i].topic.c_str());
+    Serial.print("Subscribed to: ");
+    Serial.println(_routes[i].topic);
   }
 }
 
@@ -108,15 +158,30 @@ void MqttInterlockClient::handleMessage(char* topic, uint8_t* payload, unsigned 
   }
   Serial.println();
 
-  if (length < 1) {
-    return;
+  String value;
+  for (unsigned int i = 0; i < length; i++) {
+    value += (char)payload[i];
   }
 
-
-  constexpr bool obstacleIsOne = false;
-  bool obstacleDetected = obstacleIsOne ? (payload[1] == '1') : (payload[0] == '0');
-  _receivedRunMotor = !obstacleDetected;
-  _linkMonitor.notifyPacketReceived();
+  for (uint8_t i = 0; i < _routeCount; i++) {
+    if (_routes[i].topic == topic) {
+      switch (_routes[i].slot) {
+        case CommandSlot::STATE:
+          _stateInbox.value = value;
+          _stateInbox.hasNew = true;
+          break;
+        case CommandSlot::DIRECTION:
+          _directionInbox.value = value;
+          _directionInbox.hasNew = true;
+          break;
+        case CommandSlot::SPEED:
+          _speedInbox.value = value;
+          _speedInbox.hasNew = true;
+          break;
+      }
+      return;
+    }
+  }
 }
 
 void MqttInterlockClient::staticCallback(char* topic, uint8_t* payload, unsigned int length) {
