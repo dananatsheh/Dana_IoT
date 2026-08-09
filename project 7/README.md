@@ -6,6 +6,10 @@ project only what was still relevant (the reconnect pattern, the
 `MqttInterlockClient` name/shape) — dropped everything interlock-specific
 (`LinkMonitor`, `IRSensor`, `MY_ID`/`PARTNER_ID`).
 
+See the full [Local MQTT Telemetry &
+Bidirectional Motor Control](Project_7_Documentation.pdf) for schematics, firmware, and calibration notes.
+
+
 ## Part 1 — Broker Setup
 
 Mosquitto 2.1.2, run manually (not as a service):
