@@ -44,7 +44,7 @@ Combined states shown: **ONLINE** (green) / **STALE** (orange) /
 
 ### Historical graphs across a session
 `ui_chart` nodes buffer their own data server-side (configured to keep
-the last 10 minutes via `removeOlder`/`removeOlderUnit`), so a browser
+the last 30 minutes via `removeOlder`/`removeOlderUnit`), so a browser
 refresh re-syncs from Node-RED's buffer rather than starting empty.
 This buffer lives as long as the Node-RED process runs — it does not
 survive a Node-RED restart, since Task 3.1 only asks for persistence
