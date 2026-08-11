@@ -4,15 +4,6 @@ Builds on the Task 11 MQTT system (ESP32 + BME280 + DC motor + Mosquitto)
 by replacing MQTT Explorer with a live Node-RED dashboard for monitoring
 sensors and controlling the motor.
 
-## Repo contents
-
-```
-esp32/          Updated Task 11 firmware (LWT + retained publishes added)
-node-red/
-  flows.json    Importable Node-RED flow (dashboard + logic)
-README.md       This file
-```
-
 ## Part 1: Node-RED setup
 
 1. Install Node.js (LTS) on Windows, then:
