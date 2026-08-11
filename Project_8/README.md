@@ -120,7 +120,7 @@ the Task 11 wiring/behavior.
 ## Dashboard screenshots
  ![Dashboard Screenshot](dashboard/1.png)
  
- ![Dashboard Screenshot](dashboard/2png)
+ ![Dashboard Screenshot](dashboard/2.png)
  
  ![Dashboard Screenshot](dashboard/3.png)
  
