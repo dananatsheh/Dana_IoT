@@ -4,36 +4,7 @@ Builds on the Task 11 MQTT system (ESP32 + BME280 + DC motor + Mosquitto)
 by replacing MQTT Explorer with a live Node-RED dashboard for monitoring
 sensors and controlling the motor.
 
-## Part 1: Node-RED setup
-
-1. Install Node.js (LTS) on Windows, then:
-   ```
-   npm install -g --unsafe-perm node-red
-   ```
-2. Run it from a terminal so logs are visible:
-   ```
-   node-red
-   ```
-   Same reasoning as running Mosquitto from a terminal in Task 11 — you
-   want to see connection/subscribe errors live, not guess at them.
-3. In the Node-RED editor (`http://127.0.0.1:1880`), go to
-   **Menu → Manage palette → Install** and add `node-red-dashboard`
-   (classic Dashboard 1.x, used here since it needs no extra config
-   beyond what ships with it).
-4. **Menu → Import**, paste in `node-red/flows.json`, deploy.
-5. Open the double-click on the **"Local Mosquitto (Task 11)"** MQTT
-   broker config node and confirm/re-enter:
-   - Broker: `192.168.1.33`, Port: `1883`
-   - Username: `dana`, Password: `eng008`
-
-   (Broker credentials aren't preserved on export for security reasons,
-   so double-check them after import even though they're pre-filled.)
-6. View the dashboard at `http://127.0.0.1:1880/ui`.
-
-This reuses the **same broker** from Task 11 — no second Mosquitto
-instance is spun up.
-
-## Part 2 & 3: Dashboard layout and how it meets the requirements
+## Dashboard layout and how it meets the requirements
 
 The dashboard has four groups on one tab:
 
@@ -145,18 +116,3 @@ the Task 11 wiring/behavior.
 | `motor/command/direction` | Node-RED → ESP32 | `"forward"`/`"reverse"` |
 | `motor/command/speed` | Node-RED → ESP32 | `"0"`–`"100"` (clamped) |
 | `device/esp32/status` *(new)* | ESP32 → broker | `"online"`/`"offline"`, retained, LWT |
-
-## Definition of Done
-
-- [x] Node-RED running from terminal, connected to local Mosquitto broker.
-- [x] Dashboard shows live temperature, humidity, pressure as both gauges and graphs.
-- [x] Motor state, direction, and speed shown live and reflect real hardware behavior (from `motor/status/*`, not echoed commands).
-- [x] ON/OFF, direction, and speed controls on the dashboard control the motor.
-- [x] Emergency stop button works independently of the normal OFF control.
-- [x] Disconnecting the ESP32 shows offline/stale status via LWT + watchdog.
-- [x] Flow exported as `flows.json` and included in repo.
-- [x] README updated with topic list, dashboard notes, and LWT/offline detection explanation.
-
-**Still to do on your end:** add dashboard screenshots/a screen recording here
-once you've run it against real hardware, and re-flash the ESP32 with the
-updated firmware in `esp32/` before testing.
