@@ -134,5 +134,6 @@ Local ESP32 MQTT System](Project_8_Documentation.pdf) for schematics, firmware, 
  ## Demo and Screen Recording
 
 [Watch the Screen Recording video](dashboard/Dashboard_Screen_Recording.mp4)
+
 [Watch the demo video](dashboard/Demo.mp4)
 
