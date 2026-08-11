@@ -131,6 +131,8 @@ the Task 11 wiring/behavior.
 See the full [Node-RED Visual Dashboard for a
 Local ESP32 MQTT System](Project_8_Documentation.pdf) for schematics, firmware, and calibration notes.
 
- ## Demo
+ ## Demo and Screen Recording
 
-[Watch the demo video](dashboard/Dashboard_Screen_Recording.mp4)
+[Watch the Screen Recording video](dashboard/Dashboard_Screen_Recording.mp4)
+[Watch the demo video](dashboard/Demo.mp4)
+
