@@ -116,3 +116,7 @@ the Task 11 wiring/behavior.
 | `motor/command/direction` | Node-RED → ESP32 | `"forward"`/`"reverse"` |
 | `motor/command/speed` | Node-RED → ESP32 | `"0"`–`"100"` (clamped) |
 | `device/esp32/status` *(new)* | ESP32 → broker | `"online"`/`"offline"`, retained, LWT |
+
+## Dashboard screenshots
+
+
