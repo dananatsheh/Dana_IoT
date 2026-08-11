@@ -118,12 +118,19 @@ the Task 11 wiring/behavior.
 | `device/esp32/status` *(new)* | ESP32 → broker | `"online"`/`"offline"`, retained, LWT |
 
 ## Dashboard screenshots
-![Dashboard Screenshot](dashboard/1.png)
-![Dashboard Screenshot](dashboard/2png)
-![Dashboard Screenshot](dashboard/3.png)
-![Dashboard Screenshot](dashboard/4.png)
-JSON File: [flows](dashboard/flows.json).
+ ![Dashboard Screenshot](dashboard/1.png)
+ 
+ ![Dashboard Screenshot](dashboard/2png)
+ 
+ ![Dashboard Screenshot](dashboard/3.png)
+ 
+ ![Dashboard Screenshot](dashboard/4.png)
+ 
+ JSON File: [flows](dashboard/flows.json).
 
 See the full [Node-RED Visual Dashboard for a
 Local ESP32 MQTT System](Project_8_Documentation.pdf) for schematics, firmware, and calibration notes.
 
+ ## Demo
+
+[Watch the demo video](dashboard\Dashboard_Screen_Recording.mp4)
