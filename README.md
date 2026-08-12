@@ -138,7 +138,7 @@ A presentation and control layer built on top of Project 7's ESP32/Mosquitto sys
 - Speed clamping mirrored independently on both the Node-RED and ESP32 firmware sides (defense in depth)
 
 **Framework:** PlatformIO (ESP32 firmware) + Node-RED · **Board:** ESP32 DevKit · **Broker:** Self-hosted Mosquitto 2.1.2
-📄 Documentation: [`project_8/Project_8_Documentation.pdf`](./project_8/Project_8_Documentation.pdf)
+📄 Documentation: [`project_8/Project_8_Documentation.pdf`](./Project_8/Project_8_Documentation.pdf)
 
 ---
 
