@@ -58,11 +58,24 @@ The Firebase service account key (`firebase-key.json`) is stored outside the rep
 
 
 ## Dashboard 
+ ![Dashboard Screenshot](dashboard/1.png)
+ 
+ ![Dashboard Screenshot](dashboard/2.png)
+ 
+ ![Dashboard Screenshot](dashboard/3.png)
+ 
+ ![Dashboard Screenshot](dashboard/4.png)
+ 
+ ## node-RED Flow:
+  JSON File: [flows](dashboard/flows.json).
 
+  ![Dashboard Screenshot](dashboard/0.png)
 
+See the full [Node-RED Visual Dashboard for a
+Local ESP32 MQTT System](Project_9_Documentation.pdf) for schematics, firmware, and calibration notes.
 
-## Node-RED Flow
+ ## Demo and Screen Recording
 
+[Watch the Screen Recording video](dashboard/Dashboard_Screen_Recording.mp4)
 
-
-## Demo
+[Watch the demo video](dashboard/Demo.mp4)
