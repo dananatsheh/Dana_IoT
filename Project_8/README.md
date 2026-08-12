@@ -126,7 +126,10 @@ the Task 11 wiring/behavior.
  
  ![Dashboard Screenshot](dashboard/4.png)
  
- JSON File: [flows](dashboard/flows.json).
+ ## node-RED Flow:
+  JSON File: [flows](dashboard/flows.json).
+
+  ![Dashboard Screenshot](dashboard/0.png)
 
 See the full [Node-RED Visual Dashboard for a
 Local ESP32 MQTT System](Project_8_Documentation.pdf) for schematics, firmware, and calibration notes.
