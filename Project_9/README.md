@@ -51,3 +51,18 @@ An early version of the history branch silently wrote nothing: `Merge to Firebas
 ### Credentials
 
 The Firebase service account key (`firebase-key.json`) is stored outside the repository and referenced by the Node-RED Firebase config node. It is **not** committed to version control — see `.gitignore`.
+
+## Firebase screenshots
+
+
+
+
+## Dashboard 
+
+
+
+## Node-RED Flow
+
+
+
+## Demo
