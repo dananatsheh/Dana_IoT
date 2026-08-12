@@ -53,23 +53,29 @@ An early version of the history branch silently wrote nothing: `Merge to Firebas
 The Firebase service account key (`firebase-key.json`) is stored outside the repository and referenced by the Node-RED Firebase config node. It is **not** committed to version control — see `.gitignore`.
 
 ## Firebase screenshots
-
+![Dashboard Screenshot](dashboard/FB1.png)
+ 
+ ![Dashboard Screenshot](dashboard/FB2.png)
+ 
+ ![Dashboard Screenshot](dashboard/FB3.png)
+ 
+ ![Dashboard Screenshot](dashboard/FB4.png)
 
 
 
 ## Dashboard 
- ![Dashboard Screenshot](dashboard/1.png)
+ ![Dashboard Screenshot](dashboard/DB1.png)
  
- ![Dashboard Screenshot](dashboard/2.png)
+ ![Dashboard Screenshot](dashboard/DB2.png)
  
- ![Dashboard Screenshot](dashboard/3.png)
+ ![Dashboard Screenshot](dashboard/DB3.png)
  
- ![Dashboard Screenshot](dashboard/4.png)
+ ![Dashboard Screenshot](dashboard/DB4.png)
  
  ## node-RED Flow:
   JSON File: [flows](dashboard/flows.json).
 
-  ![Dashboard Screenshot](dashboard/0.png)
+  ![Dashboard Screenshot](dashboard/flow.png)
 
 See the full [Node-RED Visual Dashboard for a
 Local ESP32 MQTT System](Project_9_Documentation.pdf) for schematics, firmware, and calibration notes.
