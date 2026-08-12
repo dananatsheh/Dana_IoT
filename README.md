@@ -15,6 +15,7 @@ Dana_IoT/
 ├── project_5/             # Project 5 — Two-Way Wireless Interlock System using ESPNOW
 ├── project_6/             # Project 6 — Two-Way Wireless Interlock System using MQTT
 ├── project_7/             # Project 7 — Local MQTT Telemetry & Bidirectional Motor Control
+├── project_8/             # Project 8 — Node-RED Visual Dashboard for a Local ESP32 MQTT System
 ├── .gitignore
 └── README.md
 ```
@@ -123,6 +124,21 @@ A single-ESP32 build that reads live BME280 environmental data over I2C and expo
 
 **Framework:** PlatformIO · **Board:** ESP32 DevKit · **Broker:** Self-hosted Mosquitto 2.1.2
 📄 Documentation: [`project_7/Project_7_Documentation.pdf`](./project_7/Project_7_Documentation.pdf)
+
+---
+
+### Project 8 — Node-RED Visual Dashboard for a Local ESP32 MQTT System
+A presentation and control layer built on top of Project 7's ESP32/Mosquitto system: a Node-RED dashboard that replaces manual MQTT Explorer/CLI inspection with live gauges, history charts, full bidirectional motor control, and a dedicated emergency stop — with no change to the underlying ESP32 wiring, sensor, or motor driver.
+
+- Live gauges and 3-minute history charts for temperature, humidity, and pressure
+- Full motor control (power, direction, speed slider clamped 0–100) plus an always-visible, dedicated Emergency Stop
+- Retained Last Will and Testament on `device/esp32/status` for immediate detection of an ungraceful ESP32 disconnect
+- Retained telemetry/status publishes so a dashboard opened after the fact shows real current values instantly
+- Dual-signal availability indicator (broker LWT + client-side watchdog) that degrades gracefully: ONLINE → STALE → OFFLINE
+- Speed clamping mirrored independently on both the Node-RED and ESP32 firmware sides (defense in depth)
+
+**Framework:** PlatformIO (ESP32 firmware) + Node-RED · **Board:** ESP32 DevKit · **Broker:** Self-hosted Mosquitto 2.1.2
+📄 Documentation: [`project_8/Project_8_Documentation.pdf`](./project_8/Project_8_Documentation.pdf)
 
 ---
 
