@@ -16,6 +16,7 @@ Dana_IoT/
 ├── project_6/             # Project 6 — Two-Way Wireless Interlock System using MQTT
 ├── project_7/             # Project 7 — Local MQTT Telemetry & Bidirectional Motor Control
 ├── project_8/             # Project 8 — Node-RED Visual Dashboard for a Local ESP32 MQTT System
+├── project_9/              # Project 9 — Firebase Realtime Database Cloud Logging for a Local ESP32 MQTT System
 ├── .gitignore
 └── README.md
 ```
@@ -139,6 +140,21 @@ A presentation and control layer built on top of Project 7's ESP32/Mosquitto sys
 
 **Framework:** PlatformIO (ESP32 firmware) + Node-RED · **Board:** ESP32 DevKit · **Broker:** Self-hosted Mosquitto 2.1.2
 📄 Documentation: [`project_8/Project_8_Documentation.pdf`](./Project_8/Project_8_Documentation.pdf)
+
+---
+
+### Project 9 — Firebase Realtime Database Cloud Logging for a Local ESP32 MQTT System
+An additive cloud-logging branch built on top of Project 8's Node-RED dashboard, mirroring live sensor readings and motor state into a Firebase Realtime Database without touching the existing ESP32 wiring, MQTT subscriptions, or dashboard flow. No new hardware, sensors, or wiring — the entire branch taps off nodes that already exist in the Project 8 flow.
+
+- Current-state writer (`Set`) that fully overwrites a single `/current` node on every tracked value change, always reflecting "right now"
+- History writer (`Push`) that snapshots the same state every 15 seconds into a uniquely-keyed, append-only `/history` log
+- Firebase writers tap validated, already-converted sensor values and the existing dual-signal (LWT + watchdog) connection status — no duplicated MQTT subscriptions or validation logic
+- Firebase nodes wired as a pure branch off existing outputs, never in series, so dashboard responsiveness is unaffected by Firebase write latency
+- Locked-mode Realtime Database rules (Admin SDK bypasses rules entirely, so locking down client-side access costs nothing functionally)
+- Debugging case study: a silent data-loss bug caused by Node-RED's per-node context scope, found and fixed by switching to flow-scoped context
+
+**Framework:** PlatformIO (ESP32 firmware) + Node-RED + Firebase Realtime Database · **Board:** ESP32 DevKit · **Broker:** Self-hosted Mosquitto 2.1.2
+📄 Documentation: [`project_9/Project_9_Documentation.pdf`](./project_9/Project_9_Documentation.pdf)
 
 ---
 
