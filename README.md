@@ -16,7 +16,7 @@ Dana_IoT/
 ├── project_6/             # Project 6 — Two-Way Wireless Interlock System using MQTT
 ├── project_7/             # Project 7 — Local MQTT Telemetry & Bidirectional Motor Control
 ├── project_8/             # Project 8 — Node-RED Visual Dashboard for a Local ESP32 MQTT System
-├── project_9/              # Project 9 — Firebase Realtime Database Cloud Logging for a Local ESP32 MQTT System
+├── project_9/             # Project 9 — Firebase Realtime Database Cloud Logging for a Local ESP32 MQTT System
 ├── .gitignore
 └── README.md
 ```
