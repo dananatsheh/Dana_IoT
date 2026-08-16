@@ -154,7 +154,7 @@ An additive cloud-logging branch built on top of Project 8's Node-RED dashboard,
 - Debugging case study: a silent data-loss bug caused by Node-RED's per-node context scope, found and fixed by switching to flow-scoped context
 
 **Framework:** PlatformIO (ESP32 firmware) + Node-RED + Firebase Realtime Database · **Board:** ESP32 DevKit · **Broker:** Self-hosted Mosquitto 2.1.2
-📄 Documentation: [`project_9/Project_9_Documentation.pdf`](./project_9/Project_9_Documentation.pdf)
+📄 Documentation: [`project_9/Project_9_Documentation.pdf`](./Project_9/Project_9_Documentation.pdf)
 
 ---
 
