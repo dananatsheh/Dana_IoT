@@ -17,6 +17,7 @@ Dana_IoT/
 ├── project_7/             # Project 7 — Local MQTT Telemetry & Bidirectional Motor Control
 ├── project_8/             # Project 8 — Node-RED Visual Dashboard for a Local ESP32 MQTT System
 ├── project_9/             # Project 9 — Firebase Realtime Database Cloud Logging for a Local ESP32 MQTT System
+├── project_10/            # Project 10 — ESP-IDF GPIO, ADC & PWM Fundamentals
 ├── .gitignore
 └── README.md
 ```
@@ -155,6 +156,18 @@ An additive cloud-logging branch built on top of Project 8's Node-RED dashboard,
 
 **Framework:** PlatformIO (ESP32 firmware) + Node-RED + Firebase Realtime Database · **Board:** ESP32 DevKit · **Broker:** Self-hosted Mosquitto 2.1.2
 📄 Documentation: [`project_9/Project_9_Documentation.pdf`](./Project_9/Project_9_Documentation.pdf)
+
+---
+
+### Project 10 — ESP-IDF GPIO, ADC & PWM Fundamentals
+A back-to-basics build using pure ESP-IDF — no Arduino compatibility layer, no FreeRTOS tasks beyond the implicit one `app_main` runs on — covering the three foundational peripheral APIs: digital GPIO, ADC, and LEDC PWM. A potentiometer drives PWM LED brightness via `adc_oneshot`; an IR obstacle sensor drives a second LED fully on/off via polled `gpio_get_level`.
+
+- Potentiometer-driven PWM brightness control via `adc_oneshot` + `ledc`, with linear 12-bit-to-13-bit duty scaling
+- IR sensor–gated digital LED switching via plain polled GPIO input, no interrupts
+- 16-sample **median filter** on the ADC read, chosen over a simple oversampled mean specifically for robustness against intermittent single-sample outlier spikes
+
+**Framework:** ESP-IDF (VS Code) / PlatformIO · **Board:** ESP32 DevKit
+📄 Documentation: [`project_10/Project_10_Documentation.pdf`](./Project_10/Project_10_Documentation.pdf)
 
 ---
 
