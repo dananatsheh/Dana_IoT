@@ -5,6 +5,9 @@ APIs — digital GPIO, ADC, and LEDC PWM — with **no Arduino compatibility lay
 and no FreeRTOS tasks** beyond the single implicit task ESP-IDF always creates
 for `app_main`.
 
+See the full [ESP-IDF GPIO, ADC & PWM
+Fundamentals](Project_10_Documentation.pdf) for schematics, firmware, and calibration notes.
+
 ## What it does
 
 - **Potentiometer → PWM brightness.** A potentiometer wiper is read through
