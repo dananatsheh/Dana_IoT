@@ -126,13 +126,13 @@ the Task 11 wiring/behavior.
  
  ![Dashboard Screenshot](dashboard/4.png)
 
- ![Dashboard Screenshot](dashboard/5.png)
+ ![Dashboard Screenshot](dashboard/5.jpeg)
 
- ![Dashboard Screenshot](dashboard/6.png)
+ ![Dashboard Screenshot](dashboard/6.jpeg)
 
- ![Dashboard Screenshot](dashboard/7.png)
+ ![Dashboard Screenshot](dashboard/7.jpeg)
 
- ![Dashboard Screenshot](dashboard/8.png)
+ ![Dashboard Screenshot](dashboard/8.jpeg)
  
  ## node-RED Flow:
   JSON File: [flows](dashboard/flows.json).
