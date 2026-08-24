@@ -1,0 +1,907 @@
+[
+    {
+        "id": "f_task31",
+        "type": "tab",
+        "label": "Task 3.1 - ESP32 Dashboard",
+        "disabled": false,
+        "info": "Node-RED dashboard for Task 11 MQTT motor/sensor system.",
+        "env": []
+    },
+    {
+        "id": "in_temp",
+        "type": "mqtt in",
+        "z": "f_task31",
+        "name": "temperature in",
+        "topic": "sensor/bme280/temperature",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "cfg_broker",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 240,
+        "wires": [
+            [
+                "fn_conn_monitor",
+                "2c966603e2372272"
+            ]
+        ]
+    },
+    {
+        "id": "in_humidity",
+        "type": "mqtt in",
+        "z": "f_task31",
+        "name": "humidity in",
+        "topic": "sensor/bme280/humidity",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "cfg_broker",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "fn_conn_monitor",
+                "db3d331213859c36"
+            ]
+        ]
+    },
+    {
+        "id": "in_pressure",
+        "type": "mqtt in",
+        "z": "f_task31",
+        "name": "pressure in",
+        "topic": "sensor/bme280/pressure",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "cfg_broker",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 320,
+        "y": 360,
+        "wires": [
+            [
+                "fn_conn_monitor",
+                "56054e94c442144f"
+            ]
+        ]
+    },
+    {
+        "id": "in_motor_state",
+        "type": "mqtt in",
+        "z": "f_task31",
+        "name": "motor state in",
+        "topic": "motor/status/state",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "cfg_broker",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 420,
+        "wires": [
+            [
+                "tpl_motor_state",
+                "fn_conn_monitor"
+            ]
+        ]
+    },
+    {
+        "id": "in_motor_dir",
+        "type": "mqtt in",
+        "z": "f_task31",
+        "name": "motor direction in",
+        "topic": "motor/status/direction",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "cfg_broker",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 480,
+        "wires": [
+            [
+                "tpl_motor_dir",
+                "fn_conn_monitor"
+            ]
+        ]
+    },
+    {
+        "id": "in_motor_speed",
+        "type": "mqtt in",
+        "z": "f_task31",
+        "name": "motor speed in",
+        "topic": "motor/status/speed",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "cfg_broker",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 340,
+        "y": 540,
+        "wires": [
+            [
+                "gauge_speed",
+                "text_speed",
+                "fn_conn_monitor"
+            ]
+        ]
+    },
+    {
+        "id": "in_device_status",
+        "type": "mqtt in",
+        "z": "f_task31",
+        "name": "device status in (LWT)",
+        "topic": "device/esp32/status",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "cfg_broker",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 600,
+        "wires": [
+            [
+                "fn_conn_monitor"
+            ]
+        ]
+    },
+    {
+        "id": "gauge_temp",
+        "type": "ui_gauge",
+        "z": "f_task31",
+        "name": "Temperature gauge",
+        "group": "grp_env",
+        "order": 1,
+        "width": "7",
+        "height": "5",
+        "gtype": "gauge",
+        "title": "Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-10",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 770,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "gauge_humidity",
+        "type": "ui_gauge",
+        "z": "f_task31",
+        "name": "Humidity gauge",
+        "group": "grp_env",
+        "order": 3,
+        "width": "7",
+        "height": "5",
+        "gtype": "gauge",
+        "title": "Humidity",
+        "label": "%RH",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 760,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "gauge_pressure",
+        "type": "ui_gauge",
+        "z": "f_task31",
+        "name": "Pressure gauge",
+        "group": "grp_env",
+        "order": 5,
+        "width": "7",
+        "height": "5",
+        "gtype": "gauge",
+        "title": "Pressure",
+        "label": "hPa",
+        "format": "{{value}}",
+        "min": "800",
+        "max": "1100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 760,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "gauge_speed",
+        "type": "ui_gauge",
+        "z": "f_task31",
+        "name": "Speed gauge",
+        "group": "grp_motor",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gauge",
+        "title": "Motor Speed",
+        "label": "%",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 750,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "chart_temp",
+        "type": "ui_chart",
+        "z": "f_task31",
+        "name": "Temperature history",
+        "group": "grp_env",
+        "order": 2,
+        "width": "7",
+        "height": "5",
+        "label": "Temperature (last 30 min)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "30",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1080,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "chart_humidity",
+        "type": "ui_chart",
+        "z": "f_task31",
+        "name": "Humidity history",
+        "group": "grp_env",
+        "order": 4,
+        "width": "7",
+        "height": "5",
+        "label": "Humidity (last 30 min)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "30",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1060,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "chart_pressure",
+        "type": "ui_chart",
+        "z": "f_task31",
+        "name": "Pressure history",
+        "group": "grp_env",
+        "order": 6,
+        "width": "7",
+        "height": "5",
+        "label": "Pressure (last 30 min)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "30",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1060,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "tpl_motor_state",
+        "type": "ui_template",
+        "z": "f_task31",
+        "group": "grp_motor",
+        "name": "Motor state indicator",
+        "order": 1,
+        "width": 0,
+        "height": 2,
+        "format": "<div style=\"text-align:center;padding:6px 0;\">\n  <span style=\"display:inline-block;width:14px;height:14px;border-radius:50%;\n    background:{{msg.payload==1 || msg.payload=='1' ? '#2e7d32' : '#c62828'}};\n    margin-right:8px;vertical-align:middle;\"></span>\n  <b>{{msg.payload==1 || msg.payload=='1' ? 'RUNNING' : 'STOPPED'}}</b>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 780,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "tpl_motor_dir",
+        "type": "ui_template",
+        "z": "f_task31",
+        "group": "grp_motor",
+        "name": "Motor direction indicator",
+        "order": 2,
+        "width": 0,
+        "height": 2,
+        "format": "<div style=\"text-align:center;padding:6px 0;\">\n  <b>{{msg.payload=='forward' ? 'FORWARD' : 'REVERSE'}}</b>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 790,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "tpl_conn_status",
+        "type": "ui_template",
+        "z": "f_task31",
+        "group": "grp_motor",
+        "name": "Connection status indicator",
+        "order": 4,
+        "width": 0,
+        "height": 2,
+        "format": "<div style=\"text-align:center;padding:6px 0;\">\n  <span style=\"display:inline-block;width:14px;height:14px;border-radius:50%;\n    background:{{msg.payload.color}};margin-right:8px;vertical-align:middle;\"></span>\n  <b>{{msg.payload.status}}</b>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1080,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "text_speed",
+        "type": "ui_text",
+        "z": "f_task31",
+        "group": "grp_motor",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "Speed readout",
+        "label": "Reported speed",
+        "format": "{{msg.payload}}%",
+        "layout": "row-spread",
+        "className": "",
+        "x": 760,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "fn_conn_monitor",
+        "type": "function",
+        "z": "f_task31",
+        "name": "Connection monitor ",
+        "func": "const STALE_MS = 8000;\n\nlet ctx = context.get('conn') || { online: false, lastSeen: 0 };\n\nif (msg.topic === 'device/esp32/status') {\n    ctx.online = (msg.payload === 'online');\n    if (ctx.online) {\n        ctx.lastSeen = Date.now();\n    }\n} else if (msg.topic === 'tick') {\n} else {\n    ctx.lastSeen = Date.now();\n}\n\ncontext.set('conn', ctx);\n\nconst stale = (Date.now() - ctx.lastSeen) > STALE_MS;\n\nlet status, color;\nif (!ctx.online) {\n    status = 'OFFLINE';\n    color = '#c62828';\n} else if (stale) {\n    status = 'STALE';\n    color = '#f9a825';\n} else {\n    status = 'ONLINE';\n    color = '#2e7d32';\n}\n\nreturn { payload: { status: status, color: color } };\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 540,
+        "wires": [
+            [
+                "tpl_conn_status"
+            ]
+        ]
+    },
+    {
+        "id": "inj_tick",
+        "type": "inject",
+        "z": "f_task31",
+        "name": "watchdog tick (3s)",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 2,
+        "topic": "tick",
+        "payload": "",
+        "payloadType": "date",
+        "x": 350,
+        "y": 660,
+        "wires": [
+            [
+                "fn_conn_monitor"
+            ]
+        ]
+    },
+    {
+        "id": "sw_onoff",
+        "type": "ui_switch",
+        "z": "f_task31",
+        "name": "Motor ON/OFF",
+        "label": "Motor Power",
+        "tooltip": "Turns the motor on or off",
+        "group": "grp_control",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "motor/command/state",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 340,
+        "y": 780,
+        "wires": [
+            [
+                "out_state"
+            ]
+        ]
+    },
+    {
+        "id": "sw_dir",
+        "type": "ui_switch",
+        "z": "f_task31",
+        "name": "Motor Direction",
+        "label": "Direction (ON = Forward)",
+        "tooltip": "Toggle motor rotation direction",
+        "group": "grp_control",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "motor/command/direction",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "forward",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "reverse",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 340,
+        "y": 840,
+        "wires": [
+            [
+                "out_dir"
+            ]
+        ]
+    },
+    {
+        "id": "sl_speed",
+        "type": "ui_slider",
+        "z": "f_task31",
+        "name": "Speed slider",
+        "label": "Speed %",
+        "tooltip": "Drag then release to set motor speed",
+        "group": "grp_control",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "motor/command/speed",
+        "topicType": "str",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 330,
+        "y": 900,
+        "wires": [
+            [
+                "fn_clamp_speed"
+            ]
+        ]
+    },
+    {
+        "id": "fn_clamp_speed",
+        "type": "function",
+        "z": "f_task31",
+        "name": "Clamp speed 0-100",
+        "func": "let v = Number(msg.payload);\nif (isNaN(v)) {\n    v = 0;\n}\nif (v < 0) {\n    v = 0;\n} else if (v > 100) {\n    v = 100;\n}\nmsg.payload = String(Math.round(v));\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 900,
+        "wires": [
+            [
+                "out_speed"
+            ]
+        ]
+    },
+    {
+        "id": "btn_estop",
+        "type": "ui_button",
+        "z": "f_task31",
+        "name": "EMERGENCY STOP",
+        "group": "grp_emergency",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "⛔ EMERGENCY STOP",
+        "tooltip": "Immediately cuts motor power",
+        "color": "#ffffff",
+        "bgcolor": "#c62828",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "motor/command/state",
+        "topicType": "str",
+        "x": 360,
+        "y": 720,
+        "wires": [
+            [
+                "out_state"
+            ]
+        ]
+    },
+    {
+        "id": "out_state",
+        "type": "mqtt out",
+        "z": "f_task31",
+        "name": "publish motor/command/state",
+        "topic": "",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "cfg_broker",
+        "x": 810,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "out_dir",
+        "type": "mqtt out",
+        "z": "f_task31",
+        "name": "publish motor/command/direction",
+        "topic": "",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "cfg_broker",
+        "x": 820,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "out_speed",
+        "type": "mqtt out",
+        "z": "f_task31",
+        "name": "publish motor/command/speed",
+        "topic": "",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "cfg_broker",
+        "x": 810,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "2c966603e2372272",
+        "type": "change",
+        "z": "f_task31",
+        "name": "string to int",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 240,
+        "wires": [
+            [
+                "gauge_temp",
+                "chart_temp"
+            ]
+        ]
+    },
+    {
+        "id": "db3d331213859c36",
+        "type": "change",
+        "z": "f_task31",
+        "name": "string to int",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 300,
+        "wires": [
+            [
+                "gauge_humidity",
+                "chart_humidity"
+            ]
+        ]
+    },
+    {
+        "id": "56054e94c442144f",
+        "type": "change",
+        "z": "f_task31",
+        "name": "string to int",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "gauge_pressure",
+                "chart_pressure"
+            ]
+        ]
+    },
+    {
+        "id": "cfg_broker",
+        "type": "mqtt-broker",
+        "name": "Local Mosquitto ",
+        "broker": "192.168.1.33",
+        "port": "1883",
+        "clientid": "nodered-task31-dashboard",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "grp_env",
+        "type": "ui_group",
+        "name": "Environment",
+        "tab": "cfg_tab",
+        "order": 2,
+        "disp": true,
+        "width": "14",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "grp_motor",
+        "type": "ui_group",
+        "name": "Motor Status",
+        "tab": "cfg_tab",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "grp_control",
+        "type": "ui_group",
+        "name": "Motor Control",
+        "tab": "cfg_tab",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "grp_emergency",
+        "type": "ui_group",
+        "name": "Emergency",
+        "tab": "cfg_tab",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cfg_tab",
+        "type": "ui_tab",
+        "name": "ESP32 Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a32197b22aa6c488",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
