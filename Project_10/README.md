@@ -95,3 +95,9 @@ bundled `framework-espidf` package version meets this before building.
   **median-filters** them (not a simple average — see below), scales the
   result to a PWM duty cycle, and separately polls the IR sensor to drive the
   second LED.
+
+  ## Scjematic and Circuit
+  <img width="2467" height="2108" alt="circuit_image (7)" src="https://github.com/user-attachments/assets/aee8278d-a4a8-4f69-8c3a-2743fa3a67de" />
+  
+  <img width="2296" height="2108" alt="IMG_20260818_103108 jpg" src="https://github.com/user-attachments/assets/3971014a-bae3-4eef-901a-ff29c359e27d" />
+
