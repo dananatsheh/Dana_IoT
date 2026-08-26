@@ -183,7 +183,7 @@ Converting a single `while(1)` polling loop into two independent, scheduler-driv
 - Debugging journal covering the dual-core (SMP) implications of the naive shared-state design
 
 **Framework:** ESP-IDF (PlatformIO) · **Board:** ESP32 DevKit
-📄 Documentation: [`project_11/Project_11_Documentation.pdf`](./Project_11/Project_11_Documentation.pdf)
+📄 Documentation: [`Project_11/Project_11_Documentation.pdf`](./Project_11/Project_11_Documentation.pdf)
 
 ---
 
