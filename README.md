@@ -18,6 +18,7 @@ Dana_IoT/
 ├── project_8/             # Project 8 — Node-RED Visual Dashboard for a Local ESP32 MQTT System
 ├── project_9/             # Project 9 — Firebase Realtime Database Cloud Logging for a Local ESP32 MQTT System
 ├── project_10/            # Project 10 — ESP-IDF GPIO, ADC & PWM Fundamentals
+├── project_11/            # Project 11 — ESP-IDF FreeRTOS Task Fundamentals
 ├── .gitignore
 └── README.md
 ```
@@ -168,6 +169,21 @@ A back-to-basics build using pure ESP-IDF — no Arduino compatibility layer, no
 
 **Framework:** ESP-IDF (VS Code) / PlatformIO · **Board:** ESP32 DevKit
 📄 Documentation: [`project_10/Project_10_Documentation.pdf`](./Project_10/Project_10_Documentation.pdf)
+
+---
+
+### Project 11 — ESP-IDF FreeRTOS Task Fundamentals
+Converting a single `while(1)` polling loop into two independent, scheduler-driven FreeRTOS tasks — `SensorTask` and `OutputTask` — created with `xTaskCreate()`, with `ESP_LOGI` diagnostics replacing all `printf` calls. The two tasks deliberately share data through plain `volatile` globals (no queue or mutex), surfacing a real cross-variable data-sharing hazard ahead of a future queue-based fix.
+
+- `SensorTask` (priority 3, 200 ms): ADC read of the potentiometer + digital read of the IR sensor
+- `OutputTask` (priority 4, 100 ms, higher priority so output freshness wins): LEDC PWM duty update + IR-triggered LED
+- Deliberately unsynchronized `volatile` global hand-off (`g_pot_raw`, `g_pwm_duty`, `g_ir_state`) used to demonstrate a real tearing/staleness hazard, not fix it
+- `vTaskDelayUntil`-anchored periods for jitter-free task timing
+- Per-task `ESP_LOGI` tags for interleaved-log readability
+- Debugging journal covering the dual-core (SMP) implications of the naive shared-state design
+
+**Framework:** ESP-IDF (PlatformIO) · **Board:** ESP32 DevKit
+📄 Documentation: [`project_11/Project_11_Documentation.pdf`](./Project_11/Project_11_Documentation.pdf)
 
 ---
 
