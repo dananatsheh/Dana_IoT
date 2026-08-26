@@ -6,7 +6,7 @@ and no FreeRTOS tasks** beyond the single implicit task ESP-IDF always creates
 for `app_main`.
 
 See the full [ESP-IDF GPIO, ADC & PWM
-Fundamentals](Project_10/Project_10_Documentation.pdf) for schematics, firmware, and calibration notes.
+Fundamentals](Project_10_Documentation.pdf) for schematics, firmware, and calibration notes.
 
 ## What it does
 
