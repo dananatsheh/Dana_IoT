@@ -70,11 +70,14 @@ questions are in `Task_4_2_Queues_Report.pdf` (source: `.tex`).
 
 <img width="812" height="441" alt="Screenshot 2026-09-01 153431" src="https://github.com/user-attachments/assets/22f6b8aa-3e39-4970-9484-75b1211e7786" />
 
+--
 
 <img width="812" height="340" alt="Screenshot 2026-09-03 112134" src="https://github.com/user-attachments/assets/d52967fd-b70e-4211-946f-dc0f24479b45" />
 
+--
 
 <img width="812" height="290" alt="Screenshot 2026-09-03 112752" src="https://github.com/user-attachments/assets/2a327abb-1005-4008-ba92-94f988b329ea" />
 
+--
 
 <img width="812" height="326" alt="Screenshot 2026-09-03 112732" src="https://github.com/user-attachments/assets/1a803ea2-f6fb-4fe8-83cc-3dfa750dd2aa" />
