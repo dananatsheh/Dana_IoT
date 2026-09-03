@@ -19,6 +19,7 @@ Dana_IoT/
 ├── project_9/             # Project 9 — Firebase Realtime Database Cloud Logging for a Local ESP32 MQTT System
 ├── project_10/            # Project 10 — ESP-IDF GPIO, ADC & PWM Fundamentals
 ├── project_11/            # Project 11 — ESP-IDF FreeRTOS Task Fundamentals
+├── project_12/            # Project 12 — ESP-IDF FreeRTOS Queues
 ├── .gitignore
 └── README.md
 ```
@@ -184,6 +185,20 @@ Converting a single `while(1)` polling loop into two independent, scheduler-driv
 
 **Framework:** ESP-IDF (PlatformIO) · **Board:** ESP32 DevKit
 📄 Documentation: [`Project_11/Project_11_Documentation.pdf`](./Project_11/Project_11_Documentation.pdf)
+
+---
+
+### Project 12 — ESP-IDF FreeRTOS Queues
+The direct fix for Project 11's data-sharing hazard: the same `SensorTask`/`OutputTask` pair, but the raw `volatile` globals are removed entirely and replaced with a `QueueHandle_t` carrying a single `sensor_msg_t` struct (`{pot_raw, ir_state}`) per message, closing the cross-variable tearing hazard by making the hand-off atomic by construction.
+
+- `SensorTask` (priority 3, 200 ms): unchanged sampling cadence, now offering each reading to the queue via a non-blocking `xQueueSend(..., 0)`
+- `OutputTask` (priority 4): no longer runs its own fixed period — it blocks entirely on `xQueueReceive()` with a 300 ms timeout (event-driven, zero polling), re-applying the last known values if a timeout genuinely elapses
+- Queue depth tested at both 1 and 5, with a `SIMULATE_SLOW_CONSUMER` build flag used to artificially slow the consumer and make overflow behavior directly observable and loggable
+- Depth-1 vs. depth-5 comparison distinguishing two different failure modes: **drop-on-full** (data loss, favors freshness) vs. **FIFO backlog** (no loss until saturation, favors completeness at the cost of staleness/lag)
+- Report explicitly ties every finding back to the Project 11 race condition and answers what changed under the hood, why `xQueueSend` drops rather than blocks or overwrites at depth 1, and how "stale data" differs between a queue and a raw global
+
+**Framework:** ESP-IDF (PlatformIO) · **Board:** ESP32 DevKit
+📄 Documentation: [`project_12/Project_12_Documentation.pdf`](./Project_12/Project_12_Documentation.pdf)
 
 ---
 
