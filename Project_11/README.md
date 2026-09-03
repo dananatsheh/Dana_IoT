@@ -91,7 +91,7 @@ This project deliberately shares data between `SensorTask` and `OutputTask` thro
 | USB cable | 1 | Flashing and serial monitor |
 | PC running VS Code + PlatformIO Core | 1 | ESP-IDF v5.x+ toolchain |
 
-📄 Full documentation: [`Project_11_Documentation.pdf`](./Project_11_Documentation.pdf)
+Full documentation: [`Project_11_Documentation.pdf`](./Project_11_Documentation.pdf)
 
 ## Schematic and Circuit
 <img width="2467" height="2108" alt="circuit_image (7)" src="https://github.com/user-attachments/assets/099391ea-9a88-4c03-85c7-13458a38aced" />
