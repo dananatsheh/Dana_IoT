@@ -63,37 +63,13 @@ Unchanged from Task 3.6:
 Full traces, analysis, and the answers to the assignment's report
 questions are in `Task_4_2_Queues_Report.pdf` (source: `.tex`).
 
-## Repo structure
+## Full documentation:
+[`Project_11_Documentation.pdf`](./Project_12_Documentation.pdf)
 
-```
-main.c                          # Firmware source
-Task_4_2_Queues_Report.tex      # Full LaTeX report (source)
-Task_4_2_Queues_Report.pdf      # Compiled report (with placeholder figures)
-figs/                           # Drop real photos/screenshots here (see below)
-  schematic.png                 # Wiring schematic
-  circuit.jpeg                  # Breadboard photo
-  serial_depth1_normal.png      # Serial log: depth=1, normal consumer
-  serial_depth1_drop.png        # Serial log: depth=1, slow consumer (drops)
-  serial_depth5.png             # Serial log: depth=5, slow consumer (steady state)
-  serial_depth5_fillup.png      # Serial log: depth=5, boot-time fill-up phase
-```
+<img width="606" height="441" alt="Screenshot 2026-09-01 153431" src="https://github.com/user-attachments/assets/22f6b8aa-3e39-4970-9484-75b1211e7786" />
 
-## Build & flash
+<img width="812" height="340" alt="Screenshot 2026-09-03 112134" src="https://github.com/user-attachments/assets/d52967fd-b70e-4211-946f-dc0f24479b45" />
 
-```bash
-pio run -t upload
-pio device monitor -b 115200
-```
+<img width="796" height="290" alt="Screenshot 2026-09-03 112752" src="https://github.com/user-attachments/assets/2a327abb-1005-4008-ba92-94f988b329ea" />
 
-To reproduce the depth/consumer comparisons, edit `QUEUE_LENGTH` and
-`SIMULATE_SLOW_CONSUMER` at the top of `main.c`, rebuild, and re-flash
-between configurations.
-
-## Report questions (answered in full in the PDF)
-
-1. Did the queue solve the Task 3.6 race condition, and what changed under
-   the hood?
-2. What happens when the queue is full at depth 1 — block, drop, or
-   overwrite — and why does that matter?
-3. What is "stale data" in a queue context, and how does it differ from
-   the global-variable staleness problem?
+<img width="823" height="326" alt="Screenshot 2026-09-03 112732" src="https://github.com/user-attachments/assets/1a803ea2-f6fb-4fe8-83cc-3dfa750dd2aa" />
