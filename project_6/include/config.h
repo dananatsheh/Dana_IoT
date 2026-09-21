@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 #define WIFI_SSID       "Dana"
-#define WIFI_PASSWORD   "meuisshit55"
+#define WIFI_PASSWORD   "password"
 
 #define MQTT_BROKER     "broker.emqx.io"
 #define MQTT_PORT       1883
