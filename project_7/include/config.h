@@ -1,8 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define WIFI_SSID       "CYBER_EXT"
-#define WIFI_PASSWORD   "cyberap2025"
+#define WIFI_SSID       "Dana"
+#define WIFI_PASSWORD   "password"
 
 #define MQTT_BROKER          "192.168.1.33"
 #define MQTT_PORT            1883
